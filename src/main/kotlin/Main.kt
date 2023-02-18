@@ -1,5 +1,3 @@
-import kotlin.system.exitProcess
-
 fun maxInLines(): String {
     var max = Int.MIN_VALUE
     var pos = 0
@@ -148,9 +146,8 @@ It looks like we will soon have more rabbits!"""
 
 val animals = arrayOf(camel, lion, deer, goose, bat, rabbit)
 
-fun main() {
+fun zoo() {
     println("Please enter the number of the habitat you would like to view:")
-    val exit = "exit"
     while (true) {
         val n = readln()
         if (n != "exit") {
@@ -162,4 +159,8 @@ fun main() {
             break
         }
     }
+}
+
+fun main() {
+    zoo()
 }
