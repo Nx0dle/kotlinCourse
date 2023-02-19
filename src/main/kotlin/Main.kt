@@ -17,7 +17,7 @@ fun maxInLines2(): String {
     repeat(readln().toInt()) {
         list.add(readln().toInt())
     }
-    return ("${list.maxOrNull()} ${list.indexOf(list.max())+1}")
+    return ("${list.maxOrNull()} ${list.indexOf(list.maxOrNull())+1}")
 }
 
 fun sumInLines(): Int {
@@ -32,6 +32,33 @@ fun sumInLines(): Int {
 fun daneOsobowe() {
     val (name, surname, age) = readln().split(" ")
     println("${name[0]}. $surname, $age years old")
+}
+
+fun charEqualCaseInsensitive() {
+        val letter = readln()
+        val letter2 = readln()
+
+        println(letter.equals(letter2,true))
+}
+
+fun wielomian() {
+    val a = readln().toInt()
+    val b = readln().toInt()
+    val c = readln().toInt()
+    val d = readln().toInt()
+    for (x in 0..1000) {
+        if (a * x * x * x + b * x * x + c * x + d == 0) println(x)
+    }
+}
+
+fun minFromN() {
+    val n = readln().toInt()
+    val list = mutableListOf<Int>()
+    for (i in 1..n) {
+        val a = readln().toInt()
+        list.add(a)
+    }
+    println(list.minOrNull())
 }
 
 fun main() {
