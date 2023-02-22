@@ -1,3 +1,5 @@
+import kotlin.math.abs
+
 fun maxInLines(): String {
     var max = Int.MIN_VALUE
     var pos = 0
@@ -61,7 +63,61 @@ fun minFromN() {
     println(list.minOrNull())
 }
 
-fun main() {
-
+fun highestTax() {
+    val n = readln().toInt()
+    val comp = mutableListOf<Int>()
+    val tax = mutableListOf<Int>()
+    val result = mutableListOf<Int>()
+    for (i in 0 until n) {
+        comp.add(readln().toInt())
+    }
+    for (i in comp) {
+        tax.add(readln().toInt())
+    }
+    for (i in comp.indices) {
+        result.add(comp[i] * tax [i])
+    }
+    println(result.indexOf(result.maxOrNull())+1)
 }
+
+
+fun ticTacToe() {
+    val s = readln()
+    val checks = listOf(0, 4, 8, 2, 4, 6, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 3, 6, 1, 4, 7, 2, 5, 8).chunked(3)
+    var checkX = 0
+    var checkO = 0
+    val countX = s.count { it == 'X' }
+    val countO = s.count { it == 'O' }
+    val countFree = s.count { it == '_' || it == ' ' }
+    val countMoves = countX + countO
+
+    for (triplePos in checks) {
+        var str = ""
+        for (j in triplePos) str += s[j]
+        when (str) {
+            "XXX" -> checkX++
+            "OOO" -> checkO++
+        }
+    }
+
+    println("---------\n" +
+            "| ${s[0]} ${s[1]} ${s[2]} |\n" +
+            "| ${s[3]} ${s[4]} ${s[5]} |\n" +
+            "| ${s[6]} ${s[7]} ${s[8]} |\n" +
+            "---------")
+    println(when {
+        abs(countX - countO) > 1 -> "Impossible"
+        checkX > 0 && checkO > 0 -> "Impossible"
+        checkX == 0 && checkO == 0 && countFree > 0 -> "Game not finished"
+        checkX == 0 && checkO == 0 && countFree == 0 -> "Draw"
+        checkX == 1 && checkO == 0 -> "X wins"
+        checkX == 0 && checkO == 1 -> "O wins"
+        else -> ""
+    })
+}
+
+fun main() {
+    ticTacToe()
+}
+
 
