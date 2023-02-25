@@ -1,3 +1,4 @@
+import javax.xml.stream.events.Characters
 import kotlin.math.abs
 
 fun maxInLines(): String {
@@ -81,43 +82,47 @@ fun highestTax() {
 }
 
 
-fun ticTacToe() {
-    val s = readln()
-    val checks = listOf(0, 4, 8, 2, 4, 6, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 3, 6, 1, 4, 7, 2, 5, 8).chunked(3)
-    var checkX = 0
-    var checkO = 0
-    val countX = s.count { it == 'X' }
-    val countO = s.count { it == 'O' }
-    val countFree = s.count { it == '_' || it == ' ' }
-    val countMoves = countX + countO
+fun wordCounter() {
+    val str = readln()
 
-    for (triplePos in checks) {
-        var str = ""
-        for (j in triplePos) str += s[j]
-        when (str) {
-            "XXX" -> checkX++
-            "OOO" -> checkO++
-        }
+    var count = 0
+    for (i in str) {
+        if (Character.isWhitespace(i))
+            count++
     }
 
-    println("---------\n" +
-            "| ${s[0]} ${s[1]} ${s[2]} |\n" +
-            "| ${s[3]} ${s[4]} ${s[5]} |\n" +
-            "| ${s[6]} ${s[7]} ${s[8]} |\n" +
-            "---------")
-    println(when {
-        abs(countX - countO) > 1 -> "Impossible"
-        checkX > 0 && checkO > 0 -> "Impossible"
-        checkX == 0 && checkO == 0 && countFree > 0 -> "Game not finished"
-        checkX == 0 && checkO == 0 && countFree == 0 -> "Draw"
-        checkX == 1 && checkO == 0 -> "X wins"
-        checkX == 0 && checkO == 1 -> "O wins"
-        else -> ""
-    })
+    println(count+1) // 4
 }
 
-fun main() {
-    ticTacToe()
+fun luckyNums() {
+    val nums = readln()
+    val list = mutableListOf<Char>()
+    var sum1 = 0
+    var sum2 = 0
+    for (i in nums.indices) {
+        list.add(nums[i])
+    }
+    for (i in 0..2) {
+        sum1 += list[i].digitToInt()
+    }
+    for (i in 3..5) {
+        sum2 += list[i].digitToInt()
+    }
+    if (sum1 == sum2) println("Lucky")
+    else println("Default")
 }
 
+fun linkDataCheck() {
+    val link = readln()
+    var dataEX = link
+    val pass = dataEX.substringAfter("pass=").substringBefore("&")
+    dataEX = link.split("?").drop(1).joinToString().replace("=&", " : not found&").replace("=" ," : ")
+    val password = "password : $pass"
+    val dataF = dataEX.split("&").toMutableList()
+    for (i in dataF.indices) {
+        println(dataF[i])
+    }
+    if (link.contains("pass"))
+        println(password)
+}
 
