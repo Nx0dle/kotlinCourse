@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_EXPRESSION")
+
 import javax.xml.stream.events.Characters
 import kotlin.math.abs
 
@@ -126,3 +128,47 @@ fun linkDataCheck() {
         println(password)
 }
 
+fun simpleCalc(){
+    val (var1, op, var2) = readln().split(" ")
+
+    val a = var1.toInt()
+    val b = var2.toInt()
+
+    when (op) {
+        "+" -> println(a + b)
+        "-" -> println(a - b)
+        "*" -> println(a * b)
+        else -> println("Unknown operator")
+    }
+}
+
+fun simpleCalcRev() {
+    val (var1, var2, var3) = readln().split(" ")
+
+    val a = var1.toInt()
+    val b = var2.toInt()
+    val c = var3.toInt()
+
+    println(when (c) {
+        a + b -> "$c equals $a plus $b"
+        a - b -> "$c equals $a minus $b"
+        a * b -> "$c equals $a times $b"
+        else -> "We do not know how to calculate $c"
+    })
+}
+
+@SuppressWarnings("MagicNumber")
+fun main() {
+    when (readln().toInt()) {
+        in 0 until 1 -> println("no army")
+        in 1..4 -> println("few")
+        in 5..9 -> println("several")
+        in 10..19 -> println("pack")
+        in 20..49 -> println("lots")
+        in 50..99 -> println("horde")
+        in 100..249 -> println("throng")
+        in 250..499 -> println("swarm")
+        in 500..999 -> println("zounds")
+        in 1000..12901920 -> println("legion")
+    }
+}
